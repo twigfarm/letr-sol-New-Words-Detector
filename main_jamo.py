@@ -1,6 +1,6 @@
 from sub_jamo import *
 #from time import process_time 
-import numpy as np
+#import numpy as np
 
 #print('실행시작')
 #start = process_time() 
@@ -28,7 +28,7 @@ jamos = stopword_filter(jamos) # 불용어 제거
 jamos = ExistJamo_filter(jamos) # 이미 저장된 신조어 제거
 
 result = get_result(jamos, df) # 결과 가져오기
-
+print(result)
 #end = process_time()
 
 #print('총 ',np.round(end-start,3),'초 걸렸다.') 

@@ -1,10 +1,9 @@
-#%%
 from sub_noun import *
-from time import process_time 
-import numpy as np
+#from time import process_time 
+#import numpy as np
 
-start = process_time() 
-print('실행시작') 
+#start = process_time() 
+#print('실행시작') 
 
 df = get_data()
 
@@ -47,7 +46,7 @@ nouns = ner_filter(ner_result, 'OGG', nouns)
 result = get_result(nouns, df) 
 print(result)
 
-end = process_time()
-print('총 ',np.round(end-start,3),'초 걸렸다.') 
+#end = process_time()
+#print('총 ',np.round(end-start,3),'초 걸렸다.') 
 
 #print(result) -> temp_noun.xlsx에서 확인가능

@@ -1,4 +1,3 @@
-# %%
 from soynlp import DoublespaceLineCorpus
 from soynlp.word import WordExtractor  
 from soynlp.noun import LRNounExtractor_v2 
@@ -86,14 +85,6 @@ def preprocessing(text):
     #공백 두개 이상 하나로 지우기 
     text = re.sub('  +', ' ', text)
     return text.strip()
-
-'''
-df = basic_preprocessing(df) # 1차 전처리
-df['content'] = df['content'].apply(preprocessing) # 2차 전처리
-df = df[df['content'].str.len() > 1] # 댓글 길이가 한 글자면 제거
-df= df.reset_index(drop=True) 
-'''
-#preprocessing('그리고 돈카츠인데!! 고로케는 왜 나오노ㅋㅋㅋ 커틀렛도 아니고ㅋㅋㅋ')
 
 def word_extractor(df, file_path = 'df.txt'): 
     #word_extractor 학습을 위한 txt 만들기
@@ -270,8 +261,8 @@ def pos_combo1(nouns): # 1. okt_pos에서 Adverb로 분류된 단어들 탈락�
     for idx in range(len(nouns)):
         if len(nouns['okt_pos'][idx]) == 1 and nouns['okt_pos'][idx][0][1] == 'Adverb':
             adverb_index.append(idx)
-    print('1. nouns에서 탈락되는 단어들')
-    print(list(nouns.iloc[adverb_index]['noun'])  )      
+    #print('1. nouns에서 탈락되는 단어들')
+    #print(list(nouns.iloc[adverb_index]['noun'])  )      
     nouns = nouns.drop(adverb_index,axis=0)
     nouns = nouns.reset_index(drop=True)  
     return nouns
@@ -281,8 +272,8 @@ def pos_combo2(nouns): # 2. okt_pos에서 Adjective 로 분류된 단어들 탈�
     for idx in range(len(nouns)):
         if len(nouns['okt_pos'][idx]) == 1 and nouns['okt_pos'][idx][0][1] == 'Adjective':
             adj_index.append(idx)
-    print('2. nouns에서 탈락되는 단어들')
-    print(list(nouns.iloc[adj_index]['noun'])  )      
+    #print('2. nouns에서 탈락되는 단어들')
+    #print(list(nouns.iloc[adj_index]['noun'])  )      
     nouns = nouns.drop(adj_index,axis=0)
     nouns = nouns.reset_index(drop=True)  
     return nouns        
@@ -292,8 +283,8 @@ def pos_combo3(nouns): # 3. okt_pos에서 Suffix 로 분류된 단어들 탈락�
     for idx in range(len(nouns)):
         if len(nouns['okt_pos'][idx]) == 1 and nouns['okt_pos'][idx][0][1] == 'Suffix':
             suffix_index.append(idx)
-    print('3. nouns에서 탈락되는 단어들')
-    print(list(nouns.iloc[suffix_index]['noun'])  )      
+    #print('3. nouns에서 탈락되는 단어들')
+    #print(list(nouns.iloc[suffix_index]['noun'])  )      
     nouns = nouns.drop(suffix_index,axis=0)
     nouns = nouns.reset_index(drop=True)  
     return nouns 
@@ -322,8 +313,8 @@ def pos_combo4(nouns): # 4. okt_pos에서 Verb 로 분류된 단어들 중 몇�
                 verb_index.append(idx)
             elif len(nouns['mecab_pos'][idx]) ==2 and nouns['mecab_pos'][idx][0][1] == 'VA' and nouns['mecab_pos'][idx][1][1] == 'EC'   :
                 verb_index.append(idx)
-    print('4. nouns에서 탈락되는 단어들')
-    print(list(nouns.iloc[verb_index]['noun'])  )      
+    #print('4. nouns에서 탈락되는 단어들')
+    #print(list(nouns.iloc[verb_index]['noun'])  )      
     nouns = nouns.drop(verb_index,axis=0)
     nouns = nouns.reset_index(drop=True)
     return nouns             
@@ -336,8 +327,8 @@ def pos_combo5(nouns): # 5. Okt로 분석한 결과 Noun과 Suffix로 이루어�
                 if len(nouns['okt_pos'][idx])==2 :
                     if nouns['okt_pos'][idx][0][1]== 'Noun' and nouns['okt_pos'][idx][1][1]== 'Suffix'  :
                         drop_index.append(idx)
-    print('5. nouns 탈락결과')
-    print(list(nouns.iloc[drop_index]['noun']))
+    #print('5. nouns 탈락결과')
+    #print(list(nouns.iloc[drop_index]['noun']))
     nouns.drop(drop_index, axis=0, inplace = True)       
     nouns = nouns.reset_index(drop=True)
     return nouns        
@@ -355,8 +346,8 @@ def pos_combo6(nouns): # 6. okt_pos에서 마지막이 josa인데, jos인 부분
             # 2. 조사를 제외한 단어가 사전에 등록되어있다. -> 조사포함 단어 삭제
             elif korword_in_dict(no_josa_word) : 
                 josa_list.append(idx)
-    print('6. nouns 탈락결과')
-    print(list(nouns.iloc[josa_list]['noun']))
+    #print('6. nouns 탈락결과')
+    #print(list(nouns.iloc[josa_list]['noun']))
     nouns.drop(josa_list, axis=0, inplace = True)       
     nouns = nouns.reset_index(drop=True)
     return nouns 
@@ -372,8 +363,8 @@ def pos_combo7(nouns): # 7. okt_pos에서 마지막이 Suffix인데, suffix인 �
             if no_suffix_word in list(nouns['noun']):
                 suffix_list.append(idx) 
 
-    print('7. nouns 탈락결과')
-    print(list(nouns.iloc[suffix_list]['noun']))
+    #print('7. nouns 탈락결과')
+    #print(list(nouns.iloc[suffix_list]['noun']))
     nouns.drop(suffix_list, axis=0, inplace = True)       
     nouns = nouns.reset_index(drop=True)
     return nouns
@@ -386,8 +377,8 @@ def pos_combo8(nouns): # 8. Mecab_pos가 VV, EC로 구성, Okt_pos가 Verb로 �
                 if len(nouns['okt_pos'][idx])==1 :
                     if nouns['okt_pos'][idx][0][1]== 'Verb'  :
                         drop_index.append(idx)
-    print('8. nouns 탈락결과')
-    print(list(nouns.iloc[drop_index]['noun']))
+    #print('8. nouns 탈락결과')
+    #print(list(nouns.iloc[drop_index]['noun']))
     nouns.drop(drop_index, axis=0, inplace = True)       
     nouns = nouns.reset_index(drop=True)
     return nouns
@@ -434,8 +425,8 @@ def english_filter(nouns):
             
     eng_pro_idx = nouns[nouns['noun']== nouns['eumcha_word']].index
     #nouns.iloc[eng_pro_idx]
-    print('english_filter으로 탈락되는 단어들 확인')
-    print(list(nouns.iloc[eng_pro_idx]['noun']))  
+    #print('english_filter으로 탈락되는 단어들 확인')
+    #print(list(nouns.iloc[eng_pro_idx]['noun']))  
     nouns.drop(eng_pro_idx, axis=0, inplace = True)       
     nouns = nouns.reset_index(drop=True)
     return nouns 
@@ -450,7 +441,6 @@ def ner_tag(nouns, df):
     pred_text, pred_tag = predict_ner((ner_df.drop_duplicates(subset=['content'])['content'].values))
     return [pred_text, pred_tag]
 
-#pred_text, pred_tag = ner_tag(nouns, df)  
 
 def ner_filter(ner_result, filter_tag, nouns):
     """
@@ -476,15 +466,13 @@ def ner_filter(ner_result, filter_tag, nouns):
             if other in word:
                 drop_idx.append(idx)
     drop_idx = list(set(drop_idx))
-    print(filter_tag , 'NER 작업으로 인해 탈락되는 단어들')
-    print(list(nouns.iloc[drop_idx]['noun']))
+    #print(filter_tag , 'NER 작업으로 인해 탈락되는 단어들')
+    #print(list(nouns.iloc[drop_idx]['noun']))
     nouns = nouns.drop(drop_idx,axis=0)
     nouns = nouns.reset_index(drop=True)
     return nouns
 
-#nouns = ner_filter(ner_result, 'PER-B', nouns)
-#nouns = ner_filter(ner_result, 'ORG-B', nouns)
-
+#띄어쓰기 오류 단어 필터링
 def pykospacing_filter(nouns):
     spacing = Spacing()
     nouns['pykospacing']=''
@@ -508,13 +496,12 @@ def pykospacing_filter(nouns):
             if nouns['space_mecab'][idx] == nouns['pykospacing'][idx]:
                 if nouns['mecab_pos'][idx][0][1]=='MM':
                     space_index.append(idx)   
-    print('pykospacing으로 탈락되는 단어들 확인')
-    print(list(nouns.iloc[space_index]['noun']))
+    #print('pykospacing으로 탈락되는 단어들 확인')
+    #print(list(nouns.iloc[space_index]['noun']))
     nouns.drop(space_index, axis = 0, inplace = True)
     nouns = nouns.reset_index(drop= True) 
     return nouns
 
-# %%
 #신조어 예비 후보 및 예문 가져오기 
 def get_result(nouns, df):
     result = pd.DataFrame(columns=['date', 'noun', 'example']) 
@@ -568,6 +555,3 @@ def predict_new_word_sentence(keywords, text):
         sim_sentences[keyword] = result
 
     return  sim_sentences# 리스트 형태로 반환
-
-
-# %%
