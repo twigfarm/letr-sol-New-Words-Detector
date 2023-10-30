@@ -1,0 +1,17 @@
+api_key/
+__pycache__/
+daeun/
+gyoungwon/
+seokho/
+tmp_trainer/
+testing/
+결과/
+트위그팜/
+cuda_test.py
+df.txt
+model_dict.txt
+*.csv
+*.json
+*.xlsx
+*.ipynb
+!ner_model_train/*.ipynb
