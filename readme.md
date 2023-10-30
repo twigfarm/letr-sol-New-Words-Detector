@@ -27,7 +27,7 @@
 
 ![단일 문장 프로세스](https://github.com/twigfarm/letr-sol-New-Words-Detector/assets/123911402/1241733d-51a8-48e0-9925-034c02154dcd)
 
-    main_sentence('입력 문장')으로 실행
+    main_sentence.predict('입력 문장')으로 실행
     
 * * *
 - 사용자 설정 가능 옵션   
