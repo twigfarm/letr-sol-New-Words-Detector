@@ -1,8 +1,10 @@
 # 신조어 추출 모델 및 정기적인 신조어 사전 구축 방법 개발
-- 신조어 탐지 통한 신조어 사전(TB) 구축  
-- 단일 문장 내 신조어와 해당 신조어가 포함된 유사 문장 출력 
+- **신조어 탐지 통한 신조어 사전(TB) 구축** - 커뮤니티 데이터 수집을 통해 신조어 추출하고, 자동화로 정기적으로 업데이트되는 신조어 사전 구축
+- **단일 문장 내 신조어 및 유사 문장 출력** - 단일 문장 입력시 해당 문장 내 신조어를 식별하고, 해당 신조어가 포함된 유사 문장을 출력
+- **추출 가능 신조어** - 2글자 이상 1어절 명사형 한글 단어, 자모 단위 단어
 ## Requirements
-requirements.txt 참고 
+requirements.txt 참고   
+[표준국어대사전](https://stdict.korean.go.kr/openapi/openApiInfo.do), [papago API](https://developers.naver.com/products/papago/nmt/nmt.md) 필요
 
 ## 모델 구조
 <div align="center"> 
@@ -47,4 +49,9 @@ requirements.txt 참고
 이석호 https://github.com/LSH0414   
 정경원 https://github.com/mabeljeong
 ## Reference
-- 추가예정
+- [모두의 말뭉치](https://corpus.korean.go.kr/)
+- [Soynlp Noun Extractor](https://pypi.org/project/soynlp/)
+- [Konlpy Mecab, Okt](https://konlpy.org/ko/latest/index.html)
+- [g2pK](https://github.com/Kyubyong/g2pK)
+- [PyKoSpacing](https://github.com/haven-jeon/PyKoSpacing)
+- [KcELECTRA-base-v2022](https://huggingface.co/beomi/KcELECTRA-base-v2022)
