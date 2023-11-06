@@ -7,6 +7,12 @@ requirements.txt 참고
 [표준국어대사전](https://stdict.korean.go.kr/openapi/openApiInfo.do), [papago API](https://developers.naver.com/products/papago/nmt/nmt.md) 필요
 
 ## 모델 구조
+- **전체 모델 프로세스**
+<div align="center"> 
+  <img src="https://github.com/twigfarm/letr-sol-New-Words-Detector/assets/84755366/6449b1e2-0737-44a9-aaff-f66d4b33a432" width="550">
+</div> 
+
+- **모델 입력 &  결과**
 <div align="center"> 
   <img src="https://github.com/twigfarm/letr-sol-New-Words-Detector/assets/123911402/d4bced69-259a-4eb4-bba0-388aaab01220" width="550">
 </div> 
